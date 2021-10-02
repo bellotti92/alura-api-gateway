@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <style>
+        body {
+            color: #333;
+            font-family: Sans-serif;
+            max-width: 800px;
+            margin: auto;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Photo Collection API</h1>
+        <p>
+            A API Photo Collection contem os seguintes recursos:
+        </p>
+        <p>    
+            Consulta pelo ID da photo. Metodo <code>GET</code> <code>/photo/{id}</code>
+        </p>
+        <pre>
+            Exemplo:
+            <code>photo/1</code>
+        </pre> 
+        <p> 
+            Consulta pelo ASSUNTO da photo. Metodo <code>GET</code> <code>/photo/assunto</code>
+        </p>
+        <pre>
+            Exemplo:
+            <code>photo/assunto?nome=batman</code>
+        </pre> 
+        <p>
+            Consulta por ASSUNTO e COLECAO. Metodo <code>GET</code> <code>/photo/consulta</code>
+        </p>
+        <pre>
+            Exemplo:
+            <code>/photo/consulta?assunto=batman&colecao=dc</code> 
+        </pre>
+    </body>
+</html>

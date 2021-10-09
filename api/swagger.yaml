@@ -3,6 +3,8 @@ swagger: "2.0"
 info:
   version: "2019-04-17T18:59:57Z"
   title: "PhotoCollection"
+host: "qob5rj152e.execute-api.us-east-2.amazonaws.com"
+basePath: "/v1"
 schemes:
 - "https"
 paths:
@@ -20,27 +22,83 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "200 response"
           schema:
             $ref: "#/definitions/Empty"
-      x-amazon-apigateway-integration:
-        credentials: "arn:aws:iam::548036946110:role/PhotoCollection-ROLE-S3-Acesso_ao_Bucket"
-        uri: "arn:aws:apigateway:us-east-2:s3:path/bellottiphotocollection/{item}"
-        responses:
-          default:
-            statusCode: "200"
-            responseTemplates:
-              application/json: "{\"messagem\":\"Envio com sucesso\"}"
-        requestParameters:
-          integration.request.path.item: "method.request.path.item"
-        passthroughBehavior: "when_no_match"
-        httpMethod: "PUT"
-        contentHandling: "CONVERT_TO_BINARY"
-        type: "aws"
+      security:
+      - api_key: []
+    delete:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "item"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - api_key: []
+  /photo:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "text/html"
+      responses:
+        "200":
+          description: "200 response"
+          headers:
+            Content-Type:
+              type: "string"
+  /photo/assunto:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+  /photo/consulta:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+  /photo/{id}:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-api-key"
+    in: "header"
 definitions:
   Empty:
     type: "object"
     title: "Empty Schema"
-x-amazon-apigateway-binary-media-types:
-- "image/jpeg"
